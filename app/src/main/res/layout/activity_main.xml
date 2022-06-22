@@ -1,18 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/wall_back" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="#99BFCBCC"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            tools:text="first string" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#99BFCBCC"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            tools:text="second string" />
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center"
+            android:columnCount="4">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:textColor="#BFCBCC"
+                android:textSize="18sp"
+                android:backgroundTint="#000000"
+                android:text="@string/key_del" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#BFCBCC"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_clear" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#BFCBCC"
+                android:textSize="18sp"
+                android:backgroundTint="#000000"
+                android:text="@string/key_division" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#BFCBCC"
+                android:textSize="18sp"
+                android:backgroundTint="#000000"
+                android:text="@string/key_multi" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#BFCBCC"
+                android:textSize="18sp"
+                android:backgroundTint="#000000"
+                android:text="@string/key_percentage" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_7" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_8" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_9" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#BFCBCC"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_dot" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:backgroundTint="#000000"
+                android:text="@string/key_4" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_5" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_6" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#BFCBCC"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_minus" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_1" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_2" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_3" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowSpan="3"
+                android:layout_gravity="fill_vertical"
+                android:textColor="#000000"
+                android:backgroundTint="#BFCBCC"
+                android:textSize="18sp"
+                android:text="@string/key_plus" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/key_0"
+                android:layout_gravity="fill"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:layout_columnSpan="2" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:textSize="18sp"
+                android:text="@string/key_00" />
+
+            <Button
+                android:layout_gravity="fill"
+                android:layout_columnSpan="3"
+                android:textColor="#000000"
+                android:backgroundTint="#BFCBCC"
+                android:text="@string/key_result" />
+
+        </GridLayout>
+    </LinearLayout>
+
+</FrameLayout>
