@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_text_size">18sp</dimen>
+    <dimen name="button_corner_radius">8dp</dimen>
+    <dimen name="custom_margin">20dp</dimen>
+    <dimen name="tv_calculate_text_size">20sp</dimen>
+    <dimen name="tv_height">100dp</dimen>
+    <dimen name="tv_result_text_size">30sp</dimen>
+    <dimen name="tv_calculate_height">25dp</dimen>
+    <dimen name="tv_result_height">30dp</dimen>
+    <dimen name="tv_calculate_margin_top">6dp</dimen>
+</resources>
