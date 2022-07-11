@@ -1,9 +1,15 @@
 package ru.veprev.android_12.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,34 +19,33 @@ import java.util.Map;
 import ru.veprev.android_12.R;
 import ru.veprev.android_12.model.CalculatorImplementation;
 import ru.veprev.android_12.model.Operator;
+import ru.veprev.android_12.model.Theme;
+import ru.veprev.android_12.model.ThemeRepository;
+import ru.veprev.android_12.model.ThemeRepositoryImpl;
 import ru.veprev.android_12.presenter.CalculatorPresenter;
 
 public class CalculatorActivity extends AppCompatActivity implements CalculatorView {
 
     private CalculatorPresenter presenter;
     private CalculatorImplementation calculator;
-    public static final String USER_INPUT = "USER_INPUT";
+    private ThemeRepository themeRepository;
     public static final String MEMORY_RESULT = "MEMORY_RESULT";
-    private TextView inputView; //для отображения ввода пользователем
     private TextView resultView; //для вывода результата
+    public static final String EXTRA_THEME = "EXTRA_THEME";
 
-    private String userInput;
     private String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        themeRepository = ThemeRepositoryImpl.getInstance(this);
+        setTheme(themeRepository.getSavedTheme().getThemeRes());
         setContentView(R.layout.activity_calculator);
 
-        inputView = findViewById(R.id.calculate_view);
         resultView = findViewById(R.id.result_view);
-
-
-        if (savedInstanceState != null) {
-            userInput = savedInstanceState.getString(USER_INPUT);
+        if (savedInstanceState != null)
             result = savedInstanceState.getString(MEMORY_RESULT);
-        }
-        inputView.setText(userInput);
+
         resultView.setText(result);
 
 
@@ -78,6 +83,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         operators.put(R.id.sub, Operator.SUB);          // операция вычитания
         operators.put(R.id.div, Operator.DIV);          // операция деления
         operators.put(R.id.multi, Operator.MULTI);      // операция умножения
+        operators.put(R.id.pow, Operator.POW);          // операция возведения в степень
         operators.put(R.id.result, Operator.RESULT);    // равно - получение результата операции
 
         //Обработка кнопок - операторов
@@ -86,6 +92,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         findViewById(R.id.sub).setOnClickListener(operatorClickListener);
         findViewById(R.id.div).setOnClickListener(operatorClickListener);
         findViewById(R.id.multi).setOnClickListener(operatorClickListener);
+        findViewById(R.id.pow).setOnClickListener(operatorClickListener);
         findViewById(R.id.result).setOnClickListener(operatorClickListener);
 
         // операция вычисления процента
@@ -100,13 +107,30 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         View.OnClickListener clearClickListener = view -> presenter.onClearPressed();
         findViewById(R.id.clear).setOnClickListener(clearClickListener);
 
-        View.OnClickListener doubleZeroClickListener = view -> presenter.onDoubleZeroPressed();
-        findViewById(R.id.double_zero).setOnClickListener(doubleZeroClickListener);
-
         // плавающая точка
         View.OnClickListener dotClickListener = view -> presenter.onDotPressed();
-        findViewById(R.id.double_zero).setOnClickListener(dotClickListener);
+        findViewById(R.id.dot).setOnClickListener(dotClickListener);
 
+        ActivityResultLauncher<Intent> themeLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == Activity.RESULT_OK) {
+                Intent intent = result.getData();
+
+                if (intent != null) {
+                    Theme selectedOne = (Theme) intent.getSerializableExtra(EXTRA_THEME);
+                    themeRepository.saveTheme(selectedOne);
+                    recreate();
+                }
+
+
+            }
+        });
+        //Настройки
+        findViewById(R.id.settings).setOnClickListener(view -> {
+            Intent intent = new Intent(CalculatorActivity.this, SettingsActivity.class);
+            intent.putExtra(EXTRA_THEME, themeRepository.getSavedTheme());
+
+            themeLauncher.launch(intent);
+        });
 
     }
 
@@ -116,7 +140,6 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(USER_INPUT, userInput);
         outState.putString(MEMORY_RESULT, result);
     }
 
@@ -124,11 +147,10 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
      * Метод вывода результата
      */
     @Override
-    public void showResult(String resulting, String calculating) {
-        inputView.setText(calculating);
-        resultView.setText(result);
+    public void showResult(String resulting) {
 
-        userInput = inputView.getText().toString();
+        resultView.setText(resulting);
         result = resultView.getText().toString();
     }
+
 }

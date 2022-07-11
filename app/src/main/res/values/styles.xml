@@ -23,4 +23,5 @@
         <item name="android:layout_marginStart">@dimen/custom_margin</item>
         <item name="android:layout_marginEnd">@dimen/custom_margin</item>
     </style>
+
 </resources>

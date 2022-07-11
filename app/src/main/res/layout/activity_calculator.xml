@@ -18,21 +18,13 @@
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/calculate_view"
-            style="@style/TextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/tv_height"
-            android:layout_marginTop="@dimen/custom_margin"
-            android:textSize="@dimen/tv_calculate_text_size"
-            tools:text="first string" />
-
-        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/result_view"
             style="@style/TextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/tv_height"
             android:textSize="@dimen/tv_result_text_size"
-            tools:text="second string" />
+            android:layout_marginTop="@dimen/custom_margin"
+            tools:text="result" />
 
         <GridLayout
             android:layout_width="wrap_content"
@@ -99,11 +91,11 @@
                 android:text="@string/key_9" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/dot"
+                android:id="@+id/pow"
                 style="@style/CalcOperationsButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/key_dot" />
+                android:text="@string/key_00" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/key_4"
@@ -172,12 +164,13 @@
                 android:layout_gravity="fill"
                 android:text="@string/key_0" />
 
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/double_zero"
+                android:id="@+id/dot"
                 style="@style/CalcButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/key_00" />
+                android:text="@string/key_dot" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/result"
@@ -186,5 +179,13 @@
                 android:layout_gravity="fill"
                 android:text="@string/key_result" />
         </GridLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/custom_margin"
+            android:text="@string/settings"/>
+
     </LinearLayout>
 </FrameLayout>
